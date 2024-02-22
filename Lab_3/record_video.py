@@ -21,19 +21,27 @@ import sys
 
 # Print usage instructions
 if len(sys.argv) < 2:
-        print('Usage: python ' + sys.argv[0] + ' [path to filename]')
-        print('')
-        example_path = 'some/path/to/a/folder/optics_labs/videos/'
-        example_filename = 'finger_kurt-leif_transillumination'
-        print('Example: `python ' + sys.argv[0] + ' ' + example_path + example_filename + '`')
-        print('(The example will result in two files, ' + example_filename + '.h264 and ' + example_filename + '.mp4)')
-        exit()
+    print("Usage: python " + sys.argv[0] + " [path to filename]")
+    print("")
+    example_path = "some/path/to/a/folder/optics_labs/videos/"
+    example_filename = "finger_kurt-leif_transillumination"
+    print(
+        "Example: `python " + sys.argv[0] + " " + example_path + example_filename + "`"
+    )
+    print(
+        "(The example will result in two files, "
+        + example_filename
+        + ".h264 and "
+        + example_filename
+        + ".mp4)"
+    )
+    exit()
 
 # Split the root from the extension, ensure correct output file extension
-DEFAULT_FILE_EXTENSION = '.h264'
+DEFAULT_FILE_EXTENSION = ".h264"
 root, extension = os.path.splitext(sys.argv[1])
 if extension != DEFAULT_FILE_EXTENSION:
-        extension = DEFAULT_FILE_EXTENSION
+    extension = DEFAULT_FILE_EXTENSION
 h264_filename = root + extension
 
 # PiCamera instance. This is an object which has several attributes that can be changed.
@@ -53,12 +61,12 @@ camera.iso = 10
 # Skipping this will set a very low exposure and yield black frames, since the
 # camera needs to adjust the exposure to a high level according to current
 # light settings before turning off exposure compensation.
-print('Waiting for settings to adjust')
+print("Waiting for settings to adjust")
 sleep(2)
 
 # switch these two off so that we can manually control the awb_gains
-camera.exposure_mode = 'off'
-camera.awb_mode = 'off'
+camera.exposure_mode = "off"
+camera.awb_mode = "off"
 
 # Set gain for red and blue channel.  Setting a single number (i.e.
 # camera.awb_gains = 1) sets the same gain for all channels, but 1 seems to be
@@ -76,7 +84,7 @@ camera.awb_gains = (1, 2)
 # and inspiration for other properties to adjust.
 
 # how long we want to record
-recordTime = 5
+recordTime = 30
 
 # If we were not running the Pi headless, starting the preview would show us
 # what the camera was capturing.  Now, since we run it headless, it allows the
@@ -113,5 +121,16 @@ camera.stop_preview()
 # * -add: Add clip in .h264-file to .mp4-file
 print("Pack video in MP4 container")
 mp4_filename = root + ".mp4"
-subprocess.check_output(["ffmpeg", "-framerate", str(camera.framerate), "-i", h264_filename, "-c", "copy", mp4_filename])
+subprocess.check_output(
+    [
+        "ffmpeg",
+        "-framerate",
+        str(camera.framerate),
+        "-i",
+        h264_filename,
+        "-c",
+        "copy",
+        mp4_filename,
+    ]
+)
 print("Files saved to: " + h264_filename + " and " + mp4_filename)
