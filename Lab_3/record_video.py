@@ -76,7 +76,7 @@ camera.awb_gains = (1, 2)
 # and inspiration for other properties to adjust.
 
 # how long we want to record
-recordTime = 30
+recordTime = 5
 
 # If we were not running the Pi headless, starting the preview would show us
 # what the camera was capturing.  Now, since we run it headless, it allows the
