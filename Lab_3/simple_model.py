@@ -4,7 +4,7 @@ import numpy as np
 muabo = np.genfromtxt("./muabo.txt", delimiter=",")
 muabd = np.genfromtxt("./muabd.txt", delimiter=",")
 
-red_wavelength = 650  # Replace with wavelength in nanometres
+red_wavelength = 660  # Replace with wavelength in nanometres
 green_wavelength = 550  # Replace with wavelength in nanometres
 blue_wavelength = 470  # Replace with wavelength in nanometres
 
