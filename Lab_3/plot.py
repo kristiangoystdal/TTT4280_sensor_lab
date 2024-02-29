@@ -1,9 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 from fft_converter import *
+from data_handling import *
 import scipy.signal as sig
 
-file_path = "txt_files/puls3.txt"
+# file_path = "txt_files/transmittion/01.txt"
+# file_path = "txt_files/reflection/01.txt"
+file_path = "txt_files/robusthet/panne.txt"
 
 
 x_data, y_data, z_data = [], [], []
@@ -38,10 +41,18 @@ x_data = sig.filtfilt(b, a, x_data)
 y_data = sig.filtfilt(b, a, y_data)
 z_data = sig.filtfilt(b, a, z_data)
 
+x_data_hanning = single_hanning_window(x_data)
+y_data_hanning = single_hanning_window(y_data)
+z_data_hanning = single_hanning_window(z_data)
 
-plt.plot(time, x_data, label="R", color="red")
+
+# plt.plot(time, x_data, label="R", color="red")
 # plt.plot(time, y_data, label="G", color="green")
 # plt.plot(time, z_data, label="B", color="blue")
+
+plt.plot(time, x_data_hanning, label="R (Hanning)", color="orange")
+plt.plot(time, y_data_hanning, label="G (Hanning)", color="lime")
+plt.plot(time, z_data_hanning, label="B (Hanning)", color="cyan")
 plt.legend()
 plt.show()
 
@@ -49,20 +60,29 @@ fft_x_data, freq_x_data = single_fft_converter(x_data, 1 / 40)
 fft_y_data, freq_y_data = single_fft_converter(y_data, 1 / 40)
 fft_z_data, freq_z_data = single_fft_converter(z_data, 1 / 40)
 
-plt.plot(freq_x_data, fft_x_data, label="R", color="red")
-plt.plot(freq_y_data, fft_y_data, label="G", color="green")
-plt.plot(freq_z_data, fft_z_data, label="B", color="blue")
-plt.xlim(0, 4)
+fft_x_data_hanning, freq_x_data_hanning = single_fft_converter(x_data_hanning, 1 / 40)
+fft_y_data_hanning, freq_y_data_hanning = single_fft_converter(y_data_hanning, 1 / 40)
+fft_z_data_hanning, freq_z_data_hanning = single_fft_converter(z_data_hanning, 1 / 40)
+
+# plt.plot(freq_x_data*60, fft_x_data, label="R", color="red")
+# plt.plot(freq_y_data*60, fft_y_data, label="G", color="green")
+# plt.plot(freq_z_data * 60, fft_z_data, label="B", color="blue")
+
+plt.plot(
+    freq_x_data_hanning * 60, fft_x_data_hanning, label="R (Hanning)", color="orange"
+)
+plt.plot(
+    freq_y_data_hanning * 60, fft_y_data_hanning, label="G (Hanning)", color="lime"
+)
+plt.plot(
+    freq_z_data_hanning * 60, fft_z_data_hanning, label="B (Hanning)", color="cyan"
+)
+
+plt.xlim(0, 200)
 plt.ylim(-200, 10)
 plt.legend()
 plt.show()
 
-
-max_index = np.argmax(fft_y_data)
-max_freq = abs(freq_y_data[max_index])
-max_db_value = fft_y_data[max_index]
-print(
-    f"The frequency with the highest dB value is {max_freq} Hz with a magnitude of {max_db_value} dB."
-)
-
-print(f"Pulsen er {max_freq*60}")
+find_pulse(freq_x_data_hanning, fft_x_data_hanning)
+find_pulse(freq_y_data_hanning, fft_y_data_hanning)
+find_pulse(freq_z_data_hanning, fft_z_data_hanning)

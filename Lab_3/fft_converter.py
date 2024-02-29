@@ -22,8 +22,7 @@ def data_fft_converter(data, sample_period):
 
 def single_fft_converter(data, sample_period):
     dt = sample_period
-    N_fft = 2 ** (math.ceil(math.log(len(data), 2))) * 4
-    print(N_fft)
+    N_fft = 2 ** (math.ceil(math.log(len(data), 2))) * 8
     temp_fft = fft(data, N_fft)
     temp_fft = 20 * np.log(abs(temp_fft) / np.max(abs(temp_fft)))
     freq = fftfreq(N_fft, dt)
@@ -62,3 +61,9 @@ def hanning_window(data):
         tempData.append(data_row)
 
     return tempData
+
+
+def single_hanning_window(data):
+    window = np.hanning(len(data))
+    temp_data = data * window
+    return temp_data
