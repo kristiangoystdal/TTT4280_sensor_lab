@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2024-04-18T08:02:18.823Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="aigyBIkMLpLp3-RoLY-X" version="24.2.5" type="github" pages="2">
+<mxfile host="app.diagrams.net" modified="2024-04-18T09:41:54.934Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="c8wOv2k03pD29U_JbjEz" version="24.2.5" type="github" pages="2">
   <diagram name="Page-1" id="7lC1wY_W-eXGNm7Z-748">
-    <mxGraphModel dx="794" dy="420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="441" dy="233" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -51,7 +51,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="3DKmyJG8LxUqgfcEALIt" name="Kretstegning">
-    <mxGraphModel dx="369" dy="595" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="722" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -554,6 +554,12 @@
         </mxCell>
         <mxCell id="Viza8qYaEhnaP10Toxvq-179" value="Mikrofon" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
           <mxGeometry x="225" y="390" width="70" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="XjPKhMS6AGK8pZPe1FoJ-1" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#b3534e;strokeColor=#b85450;fillStyle=solid;gradientColor=none;" vertex="1" parent="1">
+          <mxGeometry x="338" y="98" width="4" height="4" as="geometry" />
+        </mxCell>
+        <mxCell id="XjPKhMS6AGK8pZPe1FoJ-2" value="" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#000000;strokeColor=#000000;fillStyle=solid;fontColor=#ffffff;" vertex="1" parent="1">
+          <mxGeometry x="328" y="88" width="4" height="4" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
