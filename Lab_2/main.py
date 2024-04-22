@@ -27,10 +27,23 @@ list_of_angles_degree = []
 num_of_ADC = 3
 bin_filenames = os.listdir(folder_name)
 
+plot_file = " "
+plot_all = False
 while True:
-    plot_file = int(input("Plot file nr (1-10): "))
-    if plot_file < 1 or plot_file > 10:
-        print("Exiting program...")
+    if plot_all == False:
+        plot_file = int(input("Plot file nr (1-10) or plot all (0): "))
+        if plot_file < 0 or plot_file > 10:
+            print("Exiting program...")
+            break
+        else:
+            if plot_file == 0:
+                plot_file = 1
+                plot_all = True
+    else:
+        plot_file += 1
+
+    if plot_all == True and plot_file == len(bin_filenames) + 1:
+        print("Finised plotting")
         break
 
     print(
@@ -61,41 +74,57 @@ while True:
 
     lags, lags_ms, cross = kryss_korrelasjon_list(sample_frequency * 2 - 1, inter_data)
     num_samples_delay, num_ms_delay = find_delay_list(cross, N, sample_frequency)
+    list_of_delays_samples.append(num_samples_delay)
+    list_of_delays_ms.append(num_ms_delay)
 
     rad_angle, degree_angle = angle_finder(num_ms_delay)
     list_of_angles_degree.append(degree_angle)
+    list_of_angles_rad.append(rad_angle)
+    if plot_all == False:
+        print("Done processing files.                         \n\n")
 
-    print("Done processing files.                         \n\n")
+        print("Delay in samples:")
+        pprint(num_samples_delay)
 
-    print("Delay in samples:")
-    pprint(num_samples_delay)
+        print("\nDelay in ms:")
+        pprint(num_ms_delay)
+
+        print("\nAngles in radians:")
+        pprint(rad_angle)
+
+        print("\nAngles in degrees:")
+        pprint(degree_angle)
+
+    # plot_data_subplot_len(
+    #     inter_x_axis,
+    #     inter_data,
+    #     num_of_ADC,
+    #     "TIme Signal",
+    #     0,
+    #     1,
+    # )
+    # plot_data_subplot_len(
+    #     lags,
+    #     cross,
+    #     num_of_ADC,
+    #     "Cross-correlation",
+    #     -100,
+    #     100,
+    # )
+
+if plot_all == True:
+    print("\nDelay in samples:")
+    pprint(list_of_delays_samples)
 
     print("\nDelay in ms:")
-    pprint(num_ms_delay)
+    pprint(list_of_delays_ms)
 
     print("\nAngles in radians:")
-    pprint(rad_angle)
+    pprint(list_of_angles_rad)
 
     print("\nAngles in degrees:")
-    pprint(degree_angle)
+    pprint(list_of_angles_degree)
 
     std, var = std_var(list_of_angles_degree)
     print(f"\nStandard deviation: {std}")
     print(f"Variance: {var}")
-
-    plot_data_subplot_len(
-        inter_x_axis,
-        inter_data,
-        num_of_ADC,
-        "TIme Signal",
-        0,
-        1,
-    )
-    plot_data_subplot_len(
-        lags,
-        cross,
-        num_of_ADC,
-        "Cross-correlation",
-        -100,
-        100,
-    )

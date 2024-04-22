@@ -68,13 +68,16 @@ def find_delay_list(cross, N, fs):
 
 
 def angle_finder(lags_ms):
-    arc = np.arctan(
+    arc = -np.arctan(
         SQRT_3 * (lags_ms[0] + lags_ms[1]) / (lags_ms[0] - lags_ms[1] - 2 * lags_ms[2])
     )
     if lags_ms[2] > 0:
-        arc += PI
-    if -PI / 2 < arc < 0:
-        arc += 2 * PI
+        arc = PI - arc
+    else:
+        if arc < 0:
+            arc *= -1
+        else:
+            arc = 2 * PI - arc
     degree = arc * DEGREE_FACTOR
 
     return arc, degree
