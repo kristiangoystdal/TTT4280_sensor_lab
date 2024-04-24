@@ -141,3 +141,58 @@ def plot_data_subplot_2x2(axis, data):
 
     plt.tight_layout()
     plt.show()
+
+
+def plot_side_by_side(lags, cross, f_lags, f_cross, ylim, lim1, lim2, scale):
+
+    # Create a figure and a set of subplots
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(10, 5))
+
+    plt.rcParams.update({"font.size": 13})
+
+    # First subplot
+    ax1.plot(f_lags, f_cross, marker="o")
+    ax1.set_xlim(-lim1, lim2)  # Set limits for x-axis
+    ax1.set_ylim(ylim, None)
+    ax1.set_aspect("equal", adjustable="box")  # Make the plot square
+    ax1.set_title("Uten interpolering")
+    ax1.grid(True)
+    ax1.set_xlabel("Tidsforskyvning [l]", fontsize=14)
+    ax1.set_ylabel("Krysskorrelasjon", fontsize=14)
+
+    ax1.tick_params(axis="both", which="major", labelsize=12)  # Set tick size
+    ax1_xticks = np.linspace(-lim1, lim2, num=5)  # Adjust 'num' for more or fewer ticks
+    upper_ylim = ax1.get_ylim()[1]  # Dynamic upper limit based on the data
+    ax1_yticks = np.arange(ylim, upper_ylim + 2.5, 2.5)
+    ax1.set_xticks(ax1_xticks)
+    ax1.set_yticks(ax1_yticks)
+
+    # Second subplot
+    ax2.plot(lags, cross, "r", marker="o")
+    ax2.set_xlim(-lim1 * scale, lim2 * scale)  # Set limits for x-axis
+    ax2.set_ylim(ylim * scale, None)
+    ax2.set_aspect("equal", adjustable="box")  # Make the plot square
+    ax2.set_title("Med interpolering")
+    ax2.grid(True)
+    ax2.set_xlabel("Tidsforskyvning [l]", fontsize=14)
+    ax2.set_ylabel("Krysskorrelasjon", fontsize=14)
+
+    ax2.tick_params(axis="both", which="major", labelsize=12)  # Set tick size
+    ax2.set_xticks(ax1_xticks * scale)
+    ax2.set_yticks(ax1_yticks * scale)
+
+    # fig.suptitle(title)
+    plt.tight_layout()
+    plt.show()
+
+
+def plot_single(x, y, title, xlabel, ylabel, xlim1, xlim2, ylim1, ylim2, marker, grid):
+    plt.plot(x, y, marker=marker)
+    plt.title(title)
+    plt.xlabel(xlabel, fontsize=14)
+    plt.ylabel(ylabel, fontsize=14)
+    plt.xlim(xlim1, xlim2)
+    plt.ylim(ylim1, ylim2)
+    plt.tick_params(axis="both", which="major", labelsize=12)
+    plt.grid(grid)
+    plt.show()

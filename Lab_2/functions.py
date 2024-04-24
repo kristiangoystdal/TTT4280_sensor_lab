@@ -43,13 +43,13 @@ def read_file(folder_name):
     return sample_period, data
 
 
-def kryss_korrelasjon_list(fs, data):
+def kryss_korrelasjon_list(fs, data, length):
     pairs = [(1, 0), (2, 0), (2, 1)]
     lags, lags_ms, cross = [], [], []
     for i, j in pairs:
         x, y = data[i], data[j]
         N = len(x)
-        lags.append(np.arange(-N + 1, N))
+        lags.append(np.arange(-length + 1, length))
         lags_ms.append(lags / fs * 1000)
         cross.append(np.abs(np.correlate(x, y, mode="full")))
 
@@ -68,19 +68,19 @@ def find_delay_list(cross, N, fs):
 
 
 def angle_finder(lags_ms):
-    arc = -np.arctan(
+    rad = -np.arctan(
         SQRT_3 * (lags_ms[0] + lags_ms[1]) / (lags_ms[0] - lags_ms[1] - 2 * lags_ms[2])
     )
     if lags_ms[2] > 0:
-        arc = PI - arc
+        rad = PI - rad
     else:
-        if arc < 0:
-            arc *= -1
+        if rad < 0:
+            rad *= -1
         else:
-            arc = 2 * PI - arc
-    degree = arc * DEGREE_FACTOR
+            rad = 2 * PI - rad
+    degree = rad * DEGREE_FACTOR
 
-    return arc, degree
+    return rad, degree
 
 
 def std_var(data):

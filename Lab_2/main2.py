@@ -69,8 +69,51 @@ while True:
         inter_x_axis.append(temp_x_axis)
         inter_data.append(temp_data)
 
+    first_x = x_axis
+    first_data = data
+    first_N = len(data[0])
+
+    # x_axis = inter_x_axis
+    # data = inter_data
+    # inter_x_axis = []
+    # inter_data = []
+    # for i in range(num_of_ADC):
+    #     temp_x_axis, temp_data = interpolate(x_axis[i], data[i])
+    #     inter_x_axis.append(temp_x_axis)
+    #     inter_data.append(temp_data)
+
+    # x_axis = inter_x_axis
+    # data = inter_data
+    # inter_x_axis = []
+    # inter_data = []
+    # for i in range(num_of_ADC):
+    #     temp_x_axis, temp_data = interpolate(x_axis[i], data[i])
+    #     inter_x_axis.append(temp_x_axis)
+    #     inter_data.append(temp_data)
+
+    # x_axis = inter_x_axis
+    # data = inter_data
+    # inter_x_axis = []
+    # inter_data = []
+    # for i in range(num_of_ADC):
+    #     temp_x_axis, temp_data = interpolate(x_axis[i], data[i])
+    #     inter_x_axis.append(temp_x_axis)
+    #     inter_data.append(temp_data)
+
     N = len(inter_data[0])
     sample_frequency = 1 / sample_period
+
+    f_lags, f_lags_ms, f_cross = kryss_korrelasjon_list(
+        sample_frequency * 2 - 1, first_data, first_N
+    )
+    f_num_samples_delay, f_num_ms_delay = find_delay_list(
+        f_cross, first_N, sample_frequency
+    )
+    list_of_delays_samples.append(f_num_samples_delay)
+    list_of_delays_ms.append(f_num_ms_delay)
+    rad_angle, degree_angle = angle_finder(f_num_ms_delay)
+    list_of_angles_degree.append(degree_angle)
+    list_of_angles_rad.append(rad_angle)
 
     lags, lags_ms, cross = kryss_korrelasjon_list(
         sample_frequency * 2 - 1, inter_data, N
@@ -97,34 +140,40 @@ while True:
         print("\nAngles in degrees:")
         pprint(degree_angle)
 
-        plot_data_subplot_len(
-            inter_x_axis,
-            inter_data,
-            num_of_ADC,
-            "Time Signal",
-            0,
-            1,
-        )
-        plot_data_subplot_len(
-            lags,
-            cross,
-            num_of_ADC,
-            "Kryss-korrelasjon",
-            -N - 1,
-            N,
-        )
-        plot_single(
+        # plot_data_subplot_len(
+        #     inter_x_axis,
+        #     inter_data,
+        #     num_of_ADC,
+        #     "TIme Signal",
+        #     0,
+        #     1,
+        # )
+        # plot_data_subplot_len(
+        #     f_lags,
+        #     f_cross,
+        #     num_of_ADC,
+        #     "Cross-correlation",
+        #     -50,
+        #     50,
+        # )
+        # plot_data_subplot_len(
+        #     lags,
+        #     cross,
+        #     num_of_ADC,
+        #     "Cross-correlation",
+        #     -100,
+        #     100,
+        # )
+
+        plot_side_by_side(
             lags[0],
             cross[0],
-            None,
-            "Tidsforskvyning [l]",
-            "Kryss-korrelasjon",
-            None,
-            None,
-            None,
-            None,
-            None,
-            False,
+            f_lags[0],
+            f_cross[0],
+            7.5,
+            15,
+            -5,
+            2,
         )
 
 if plot_all == True:
