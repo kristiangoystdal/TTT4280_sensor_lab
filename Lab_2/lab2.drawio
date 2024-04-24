@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2024-04-22T09:44:34.096Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/123.0.0.0 Safari/537.36" etag="h9d36AImBpY15B4h3bA8" version="24.2.5" type="github" pages="5">
+<mxfile host="app.diagrams.net" modified="2024-04-24T08:49:50.678Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36" etag="s9RBFdXtNbs1kz4iVLYJ" version="24.2.8" type="github" pages="5">
   <diagram name="Interpolasjon" id="7lC1wY_W-eXGNm7Z-748">
     <mxGraphModel dx="794" dy="420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -657,7 +657,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="nETIaRaLrkDyk-t1J8EZ" name="Mikrofonpar">
-    <mxGraphModel dx="794" dy="420" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="407" dy="215" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -697,11 +697,8 @@
         <mxCell id="gCypWHCNTU-xqh9W5MVl-14" value="d" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="1" vertex="1">
           <mxGeometry x="315" y="111" width="30" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="gCypWHCNTU-xqh9W5MVl-15" value="x" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="480" y="175" width="30" height="40" as="geometry" />
-        </mxCell>
-        <mxCell id="gCypWHCNTU-xqh9W5MVl-16" value="x&lt;sub style=&quot;font-size: 20px; font-weight: normal;&quot;&gt;ji&lt;/sub&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=1;fontSize=20;" parent="1" vertex="1">
-          <mxGeometry x="390" y="156" width="40" height="40" as="geometry" />
+        <mxCell id="gCypWHCNTU-xqh9W5MVl-15" value="$$\vec{x}$$" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontStyle=0;fontSize=20;" parent="1" vertex="1">
+          <mxGeometry x="430" y="175" width="130" height="40" as="geometry" />
         </mxCell>
         <mxCell id="gCypWHCNTU-xqh9W5MVl-19" value="l" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" parent="1" vertex="1">
           <mxGeometry x="384" y="274" width="30" height="40" as="geometry" />
@@ -751,6 +748,9 @@
               <mxPoint x="2" y="27" />
             </Array>
           </mxGeometry>
+        </mxCell>
+        <mxCell id="VSCwWk_li9WlLaXLbPAq-2" value="$$\vec{x}_{ji}$$" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=20;" vertex="1" parent="1">
+          <mxGeometry x="330" y="155" width="160" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
